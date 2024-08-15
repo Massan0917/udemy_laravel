@@ -3,6 +3,8 @@ volumes:
 
 services:
   app:
+    ports:
+      - "8000:8000"
     build:
       context: .
       dockerfile: ./infra/docker/php/Dockerfile
@@ -12,7 +14,7 @@ services:
       target: ${APP_BUILD_TARGET:-development}
     volumes:
       - type: bind
-        source: ./src
+        source: ./src/umarche
         target: /workspace
     environment:
       # Please remove this environment variable, after created the Laravel project. Please write in .env
@@ -34,7 +36,7 @@ services:
         mode: host
     volumes:
       - type: bind
-        source: ./src
+        source: ./src/umarche
         target: /workspace
 
   db:

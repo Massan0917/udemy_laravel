@@ -15,7 +15,9 @@ ARG UID=1000
 ARG GID=1000
 
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
-
+# install Node.js
+COPY --from=node:18.14.2 /usr/local/bin /usr/local/bin
+COPY --from=node:18.14.2 /usr/local/lib /usr/local/lib
 RUN <<EOF
   apt-get update
   apt-get -y install --no-install-recommends \
